@@ -1,4 +1,4 @@
-# easyim
+# EasyIM
 
 # What?
 A bash script tool suite that interfaces with the infomentor system api.
