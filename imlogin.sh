@@ -48,7 +48,6 @@ curl -X POST 'https://infomentor.se/swedish/production/mentor/' \
   -H 'Upgrade-Insecure-Requests: 1' \
   -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36' \
   -H 'cache-control: no-cache' \
-  -d '@data.json' \
   -d oauth_token=$oauth_token \
   -b cookiefile -c cookiefile -o output.txt
 
@@ -63,7 +62,7 @@ curl -X POST 'https://infomentor.se/swedish/production/mentor/' \
   -H 'Upgrade-Insecure-Requests: 1' \
   -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36' \
   -H 'cache-control: no-cache' \
-  -d "@data.json" \
+  --data-raw $jsonblob2 \
   -b cookiefile -c cookiefile -o output.txt
 
 ## Enable pin page - sets the cookies [984527]
