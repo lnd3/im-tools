@@ -1,5 +1,8 @@
 #!/bin/bash
 
+read -p "Username: " username
+read -s -p "Password: " password
+
 rm cookiefile
 rm location
 rm location2
@@ -24,13 +27,9 @@ echo "********************************************"
 
 ## Build auth structure
 jsonblob=$(cat data.json)
-username=''
-password=''
 
 jsonblob1=${jsonblob/username/$username}
 jsonblob2=${jsonblob1/password/$password}
-
-## TODO: Use jsonblob2 instead of data.json
 
 ## Initial login page - set the cookies [ASP.NET_SessionId, BIGipServerinfomentor]
 curl -X POST 'https://infomentor.se/swedish/production/mentor/' \
