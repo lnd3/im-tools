@@ -7,6 +7,8 @@ rm cookiefile
 rm location
 rm location2
 rm oauth_token
+rm pupilids
+rm output.txt
 
 ## Fetch initial redirect first
 curl -X GET 'https://hub.infomentor.se' -b cookiefile -c cookiefile -i | grep -oP "(?<=(Location: )).*" \
@@ -34,7 +36,7 @@ jsonblob2=${jsonblob1/password/$password}
 ## Initial login page - set the cookies [ASP.NET_SessionId, BIGipServerinfomentor]
 curl -X POST 'https://infomentor.se/swedish/production/mentor/' \
   -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3' \
-  -H 'Accept-Encoding: gzip, deflate, br' \
+  -H 'Accept-Encoding: deflate, br' \
   -H 'Accept-Language: sv-SE,sv;q=0.9,en-US;q=0.8,en;q=0.7' \
   -H 'Cache-Control: no-cache' \
   -H 'Connection: keep-alive' \
@@ -67,7 +69,7 @@ curl -X POST 'https://infomentor.se/swedish/production/mentor/' \
 ## Enable pin page - sets the cookies [984527]
 curl -X GET 'https://infomentor.se/Swedish/Production/mentor/Oryggi/PinLogin/EnablePin.aspx' \
   -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3' \
-  -H 'Accept-Encoding: gzip, deflate, br' \
+  -H 'Accept-Encoding: deflate, br' \
   -H 'Accept-Language: sv-SE,sv;q=0.9,en-US;q=0.8,en;q=0.7' \
   -H 'Cache-Control: no-cache' \
   -H 'Connection: keep-alive' \
@@ -85,7 +87,7 @@ curl -X GET 'https://infomentor.se/Swedish/Production/mentor/Oryggi/PinLogin/Ena
 ## Send dont activate pin
 curl -X POST 'https://infomentor.se/Swedish/Production/mentor/Oryggi/PinLogin/EnablePin.aspx' \
   -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3' \
-  -H 'Accept-Encoding: gzip, deflate, br' \
+  -H 'Accept-Encoding: deflate, br' \
   -H 'Accept-Language: sv-SE,sv;q=0.9,en-US;q=0.8,en;q=0.7' \
   -H 'Cache-Control: no-cache' \
   -H 'Connection: keep-alive' \
@@ -105,7 +107,7 @@ curl -X POST 'https://infomentor.se/Swedish/Production/mentor/Oryggi/PinLogin/En
 ## login
 curl -X GET 'https://hub.infomentor.se/authentication/authentication/login?apitype=im1&forceOAuth=true' \
   -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3' \
-  -H 'Accept-Encoding: gzip, deflate, br' \
+  -H 'Accept-Encoding: deflate, br' \
   -H 'Accept-Language: sv-SE,sv;q=0.9,en-US;q=0.8,en;q=0.7' \
   -H 'Cache-Control: no-cache' \
   -H 'Connection: keep-alive' \
@@ -117,12 +119,12 @@ curl -X GET 'https://hub.infomentor.se/authentication/authentication/login?apity
   -H 'Upgrade-Insecure-Requests: 1' \
   -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36' \
   -H 'cache-control: no-cache' \
-  -b cookiefile -c cookiefile -si -o output.txt
+  -b cookiefile -c cookiefile -i -o output.txt
 
 ## mentor - redirecting to login page so auth was unsuccessful previously
 curl -X POST 'https://infomentor.se/swedish/production/mentor/' \
   -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3' \
-  -H 'Accept-Encoding: gzip, deflate, br' \
+  -H 'Accept-Encoding: deflate, br' \
   -H 'Accept-Language: sv-SE,sv;q=0.9,en-US;q=0.8,en;q=0.7' \
   -H 'Cache-Control: no-cache' \
   -H 'Connection: keep-alive' \
@@ -137,7 +139,7 @@ curl -X POST 'https://infomentor.se/swedish/production/mentor/' \
   -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36' \
   -H 'cache-control: no-cache' \
   -d oauth_token=$oauth_token \
-  -b cookiefile -c cookiefile -i \
+  -b cookiefile -c cookiefile -si \
   | grep -oP "(?<=(Location: )).*" \
   > location2
 
@@ -155,7 +157,7 @@ fi
 ## login callback - using the 'location' in the previous response
 curl -X GET $location2 \
   -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3' \
-  -H 'Accept-Encoding: gzip, deflate, br' \
+  -H 'Accept-Encoding: deflate, br' \
   -H 'Accept-Language: sv-SE,sv;q=0.9,en-US;q=0.8,en;q=0.7' \
   -H 'Cache-Control: no-cache' \
   -H 'Connection: keep-alive' \
@@ -168,3 +170,24 @@ curl -X GET $location2 \
   -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36' \
   -H 'cache-control: no-cache' \
   -b cookiefile -c cookiefile -o output.txt
+
+## get pupil links so we can extract pupil id's
+curl -X GET \
+  https://hub.infomentor.se/ \
+  -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3' \
+  -H 'Accept-Encoding: gzip, deflate, br' \
+  -H 'Accept-Language: sv-SE,sv;q=0.9,en-US;q=0.8,en;q=0.7' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Connection: keep-alive' \
+  -H 'Pragma: no-cache' \
+  -H 'Referer: https://hub.infomentor.se/authentication/authentication/login?apitype=im1&forceOAuth=true' \
+  -H 'Sec-Fetch-Mode: navigate' \
+  -H 'Sec-Fetch-Site: same-origin' \
+  -H 'Sec-Fetch-User: ?1' \
+  -H 'Upgrade-Insecure-Requests: 1' \
+  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36' \
+  -H 'cache-control: no-cache' \
+  -b cookiefile -c cookiefile \
+  | gunzip - \
+  | grep -oP "(?<=(/Account/PupilSwitcher/SwitchPupil/))[0-9]*" \
+  > pupilids
