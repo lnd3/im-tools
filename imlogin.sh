@@ -190,4 +190,5 @@ curl -X GET \
   -b cookiefile -c cookiefile \
   | gunzip - \
   | grep -oP "(?<=(/Account/PupilSwitcher/SwitchPupil/))[0-9]*" \
-  > pupilids
+  | sort \
+  | uniq > pupilds
