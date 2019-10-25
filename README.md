@@ -1,7 +1,8 @@
-# im-tools - An alternative infomentor interface
+# im-tools
+An alternative infomentor interface.
 
 ## What?
-A bash script tool suite that interfaces with the infomentor system api.
+im-tools is a set of bash scripts that interfaces with the infomentor system api.
 
 ## Why?
 The primary objective is to enable and make available a frictionless experience when accessing your kid's news feed.
