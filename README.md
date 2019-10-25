@@ -1,4 +1,4 @@
-# EasyIM - An alternative Infomentor tool 
+# im-tools - An alternative infomentor interface
 
 ## What?
 A bash script tool suite that interfaces with the infomentor system api.
@@ -10,5 +10,5 @@ The secondary objective is to make available an alternative, simple but first an
 ## How?
 This tool suite lets you perform login, logout, pupil switching and news feed fetching.
 
-## References
-Infomentor is a school administrative tool for information sharing and pupil tracking for student, teachers and parents. See https://www.infomentor.se/.
+## Misc
+For more info about infomentor, see https://www.infomentor.se/.
