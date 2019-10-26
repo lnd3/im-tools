@@ -22,3 +22,5 @@ rm cookiefile
 rm location
 rm location2
 rm oauth_token
+rm pupilids
+rm output.txt
