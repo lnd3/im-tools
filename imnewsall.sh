@@ -21,10 +21,6 @@ for id in $pupilids; do
   ./imnews.sh > tmp1
   ./imtimeline.sh > tmp2
 
-  file1=${filenameprefix}news${id}.txt
-  file2=${filenameprefix}timeline${id}.txt
-
-  replaceNewlines "$(cat tmp1)" > ${file1}
-  replaceNewlines "$(cat tmp2)" > ${file2}
-
+  replaceNewlines "$(cat tmp1)" > ${filenameprefix}news${id}.txt
+  replaceNewlines "$(cat tmp2)" > ${filenameprefix}timeline${id}.txt
 done

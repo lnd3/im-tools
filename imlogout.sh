@@ -24,3 +24,5 @@ rm location2
 rm oauth_token
 rm pupilids
 rm output.txt
+rm tmp1
+rm tmp2
