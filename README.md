@@ -18,8 +18,11 @@ The scripts product several files in the working directory containing temporary 
 Typical use case:
 ```
 $ ./imlogin.sh myusername
-Password: mypassword  
+Password: mypassword
+...
 $ ./imnewsall.sh
+...
+$ ./imlogout.sh
 ```
 
 ## Misc
