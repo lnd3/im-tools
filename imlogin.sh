@@ -1,14 +1,26 @@
 #!/bin/bash
 
-read -p "Username: " username
-read -s -p "Password: " password
-
+## clean up
 rm cookiefile
 rm location
 rm location2
 rm oauth_token
 rm pupilids
 rm output.txt
+
+##
+username=$1
+password=$2
+
+if test -z "$username"
+then
+  read -p "Username: " username
+fi
+
+if test -z "$password"
+then
+  read -s -p "Password: " password
+fi
 
 ## Fetch initial redirect first
 curl -X GET 'https://hub.infomentor.se' -b cookiefile -c cookiefile -i | grep -oP "(?<=(Location: )).*" \
