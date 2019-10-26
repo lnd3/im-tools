@@ -191,4 +191,11 @@ curl -X GET \
   | gunzip - \
   | grep -oP "(?<=(/Account/PupilSwitcher/SwitchPupil/))[0-9]*" \
   | sort \
-  | uniq > pupilds
+  | uniq > pupilids
+
+## get all pupil news
+pupilids=$(cat pupilids)
+for id in $pupilids; do
+  ./imswitchpupil.sh ${id}
+  ./imnews.sh > news${id}.html
+done
