@@ -19,9 +19,9 @@ Typical use case:
 ```
 $ ./imlogin.sh myusername
 Password: mypassword
-...
+
 $ ./imnewsall.sh
-...
+
 $ ./imlogout.sh
 ```
 
