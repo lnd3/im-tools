@@ -26,7 +26,7 @@ $ ./imloginauto.sh
 ```
 and you should get a bunch of files containing the 'news' and 'timeline' data. There will also be some 'update' files, containing the changes since last time this script was called.
 ### Individual scripts
-If you want to make individual calls use any of the following commands
+If you want to make individual calls, use any of the following commands
 ```
 $ ./imlogin.sh myusername
 Password: mypassword
