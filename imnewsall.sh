@@ -1,21 +1,6 @@
 #!/bin/bash
 
-removefileifexist() {
-  if test -f "$1"; then
-    rm "$1"
-  fi
-}
-
-replaceNewlines() {
-  newline='\n'
-  newline2='\\n'
-  br='<br>'
-
-  string=$1
-  string1=${string//${br}/${newline}}
-  string2=${string1//${newline2}/${newline}}
-  echo -e ${string2}
-}
+source utils.sh
 
 ## get all pupil news
 pupilids=$(cat pupilids)
@@ -36,6 +21,6 @@ for id in $pupilids; do
 
 done
 
-removefileifexist tmp
-removefileifexist newsdiff
-removefileifexist timelinediff
+removeFileIfExist tmp
+removeFileIfExist newsdiff
+removeFileIfExist timelinediff

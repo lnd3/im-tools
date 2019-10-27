@@ -23,8 +23,6 @@ login() {
 failed=0
 
 for i in {1..5}; do
-  removefileifexist pupilids 
-
   if login; then
     failed=0
     echo -e "Succesful login. Continuing..."
@@ -49,4 +47,4 @@ echo -e "Logout..."
 
 ./imlogout.sh
 
-echo -E "Done."
+echo -e "Done."

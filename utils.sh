@@ -1,6 +1,6 @@
 #!/bin/bash
 
-removefileifexist() {
+removeFileIfExist() {
   if test -f "$1"; then
     rm "$1"
   fi

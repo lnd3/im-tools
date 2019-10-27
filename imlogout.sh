@@ -20,9 +20,9 @@ curl -X GET \
   -b cookiefile -c cookiefile
 
 
-removefileifexist cookiefile
-removefileifexist location
-removefileifexist location2
-removefileifexist oauth_token
-removefileifexist pupilids
-removefileifexist output.txt
+removeFileIfExist cookiefile
+removeFileIfExist location
+removeFileIfExist location2
+removeFileIfExist oauth_token
+removeFileIfExist pupilids
+removeFileIfExist output.txt
