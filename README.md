@@ -15,15 +15,19 @@ This tool suite lets you perform login, logout, pupil switching and news feed fe
 Using a unix-like environment the scripts can be called with credentials or pupilids, otherwise follow the prompt instructions. 
 The scripts product several files in the working directory containing temporary information, for example the pupil id's which are used when selecting a current pupil for subsequent calls to the infomentor api's.
 
-Typical use case:
+### Ideal use case
+Put your credentials in 'auth', then call
+```
+$ ./imloginauto.sh
+```
+and you should get a bunch of files containing the new and timeline of late. There will also be 'update' files, containing the changes since last time this script was called.
+### Individual scripts
+If you want to make individual calls use any of the following commands
 ```
 $ ./imlogin.sh myusername
 Password: mypassword
-
 $ ./imnewsall.sh
-
 $ ./imlogout.sh
 ```
-
 ## Misc
 For more info about infomentor, see https://www.infomentor.se/.
