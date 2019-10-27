@@ -13,7 +13,7 @@ The bash scripts uses a program called 'curl' that can make calls to the infomen
 During login, the scripts make a sequence of back-and-forth calls and responses to finally recieve a certain link (a login callback), which can be used only once. 
 When called, the login callback returns a certain cookie called 'imhome', which, in combination with the session cookie, allows subsequent calls to be considered as valid user calls.
 
-Auth details are sent as hidden post data. No password hashing, no RSA, just https. Apparently trusting certificate providers is enough security for infomentor.
+Auth details are sent as hidden post data. No password hashing, no RSA, just https. Apparently, trusting certificate providers is enough security for infomentor.
 
 ## Usage
 Using a unix-like environment the scripts can be called with credentials or pupilids, otherwise follow the prompt instructions. 
