@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source utils.sh
+
 curl -X GET \
   'https://hub.infomentor.se/Authentication/Authentication/LogOut?ApiType=IM1&ApiInstance=' \
   -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3' \
@@ -18,9 +20,9 @@ curl -X GET \
   -b cookiefile -c cookiefile
 
 
-rm cookiefile
-rm location
-rm location2
-rm oauth_token
-rm pupilids
-rm output.txt
+removefileifexist cookiefile
+removefileifexist location
+removefileifexist location2
+removefileifexist oauth_token
+removefileifexist pupilids
+removefileifexist output.txt

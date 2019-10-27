@@ -1,10 +1,6 @@
 #!/bin/bash
 
-removefileifexist() {
-  if test -f "$1"; then
-    rm "$1"
-  fi
-}
+source utils.sh
 
 login() {
   if test -z "$1"
@@ -42,5 +38,15 @@ done
 if test -z ${failed}; then
   echo -e "Failed to login after several attempts. Aborting..."
   # Notify user of failed attempts via email?
+  exit
 fi
 
+echo -e "Fetching updates..."
+
+./imnewsall.sh
+
+echo -e "Logout..."
+
+./imlogout.sh
+
+echo -E "Done."

@@ -1,11 +1,6 @@
 #!/bin/bash
 
-
-removefileifexist() {
-  if test -f "$1"; then
-    rm "$1"
-  fi
-}
+source utils.sh
 
 ## clean up
 removefileifexist cookiefile
