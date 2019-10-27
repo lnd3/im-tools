@@ -1,15 +1,19 @@
 # im-tools
 An alternative infomentor interface.
 
-## What?
-im-tools is a set of bash scripts that interfaces with the infomentor system api.
-
 ## Why?
 The primary objective is to enable and make available a frictionless experience when accessing your kid's news feed.
-The secondary objective is to make available an easy-to-use alternative user interface to the infomentor api - contrary to what the official infomentor app achieves in terms of usability.
+The secondary objective is to make available an easy-to-use alternative interface to the infomentor api - contrary to what the official infomentor app achieves in terms of usability.
 
-## How?
-This tool suite lets you perform login, logout, pupil switching and news feed fetching.
+## What is it?
+im-tools is a set of bash scripts that interfaces with the infomentor system api.
+
+## How does it work?
+The bash scripts uses a program called 'curl' that can make http calls to the infomentor servers. 
+During login, the scripts make a sequence of back-and-forth calls and responses to finally recieve a certain link (a login callback), which can be used only once. 
+When called, the login callback returns a certain cookie called 'imhome', which, in combination with the session cookie, allows subsequent calls to be considered as valid user calls.
+
+Auth details are sent as hidden http post data over https and is likely secure. Apparently trusting certificate providers is enough security for infomentor. I can think of a couple of scenarios where that kind of security is null and void, but let's not ponder on such minor details here.
 
 ## Usage
 Using a unix-like environment the scripts can be called with credentials or pupilids, otherwise follow the prompt instructions. 
