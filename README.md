@@ -20,7 +20,7 @@ Using a unix-like environment the scripts can be called with credentials or pupi
 The scripts product several files in the working directory containing temporary information, for example the pupil id's which are used when selecting a current pupil for subsequent calls to the infomentor api's.
 
 ### Ideal use case
-Put your credentials in 'auth', then call
+Put your credentials in the file 'auth', then call
 ```
 $ ./imloginauto.sh
 ```
