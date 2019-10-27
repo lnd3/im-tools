@@ -9,7 +9,7 @@ The secondary objective is to make available an easy-to-use alternative interfac
 im-tools is a set of bash scripts that interfaces with the infomentor system api.
 
 ## How does it work?
-The bash scripts uses a program called 'curl' that can make http calls to the infomentor servers. 
+The bash scripts uses a program called 'curl' that can make calls to the infomentor servers. 
 During login, the scripts make a sequence of back-and-forth calls and responses to finally recieve a certain link (a login callback), which can be used only once. 
 When called, the login callback returns a certain cookie called 'imhome', which, in combination with the session cookie, allows subsequent calls to be considered as valid user calls.
 
