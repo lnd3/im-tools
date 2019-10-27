@@ -1,5 +1,11 @@
 #!/bin/bash
 
+removefileifexist() {
+  if test -f "$1"; then
+    rm "$1"
+  fi
+}
+
 replaceNewlines() {
   newline='\n'
   newline2='\\n'
@@ -30,6 +36,6 @@ for id in $pupilids; do
 
 done
 
-rm tmp
-rm newsdiff
-rm timelinediff
+removefileifexist tmp
+removefileifexist newsdiff
+removefileifexist timelinediff

@@ -1,12 +1,19 @@
 #!/bin/bash
 
+
+removefileifexist() {
+  if test -f "$1"; then
+    rm "$1"
+  fi
+}
+
 ## clean up
-rm cookiefile
-rm location
-rm location2
-rm oauth_token
-rm pupilids
-rm output.txt
+removefileifexist cookiefile
+removefileifexist location
+removefileifexist location2
+removefileifexist oauth_token
+removefileifexist pupilids
+removefileifexist output.txt
 
 ##
 username=$1
