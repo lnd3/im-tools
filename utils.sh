@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 removeFileIfExist() {
   if test -f "$1"; then

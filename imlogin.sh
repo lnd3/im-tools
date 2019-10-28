@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 source utils.sh
 
@@ -153,7 +153,7 @@ curl -X POST 'https://infomentor.se/swedish/production/mentor/' \
   -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36' \
   -H 'cache-control: no-cache' \
   -d oauth_token=$oauth_token \
-  -b cookiefile -c cookiefile -si \
+  -b cookiefile -c cookiefile -s -i \
   | grep -oP "(?<=(Location: )).*" \
   > location2
 

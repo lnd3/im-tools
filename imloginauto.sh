@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 source utils.sh
 
@@ -22,7 +22,7 @@ login() {
 
 failed=0
 
-for i in {1..5}; do
+for i in {1..3}; do
   if login; then
     failed=0
     echo -e "Succesful login. Continuing..."

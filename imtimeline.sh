@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 curl -X POST \
   'https://hub.infomentor.se/grouptimeline/grouptimeline/appData' \
