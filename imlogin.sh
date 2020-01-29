@@ -64,7 +64,7 @@ curl -X POST 'https://infomentor.se/swedish/production/mentor/' \
   -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36' \
   -H 'cache-control: no-cache' \
   -d oauth_token=$oauth_token \
-  -b cookiefile -c cookiefile -o output.txt
+  -b cookiefile -c cookiefile -o output1.txt
 
 ######################################
 ## Send credentials - sets the cookies [.ASPXAUTH, NotandaUppl]
@@ -77,8 +77,8 @@ curl -X POST 'https://infomentor.se/swedish/production/mentor/' \
   -H 'Upgrade-Insecure-Requests: 1' \
   -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36' \
   -H 'cache-control: no-cache' \
-  --data-raw $jsonblob2 \
-  -b cookiefile -c cookiefile -o output.txt
+  --data-ascii $jsonblob2 \
+  -b cookiefile -c cookiefile -o output2.txt
 
 ## Enable pin page - sets the cookies [984527]
 curl -X GET 'https://infomentor.se/Swedish/Production/mentor/Oryggi/PinLogin/EnablePin.aspx' \
@@ -95,7 +95,7 @@ curl -X GET 'https://infomentor.se/Swedish/Production/mentor/Oryggi/PinLogin/Ena
   -H 'Upgrade-Insecure-Requests: 1' \
   -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36' \
   -H 'cache-control: no-cache' \
-  -b cookiefile -c cookiefile -o output.txt
+  -b cookiefile -c cookiefile -o output3.txt
 
 ######################################
 ## Send dont activate pin
@@ -116,7 +116,7 @@ curl -X POST 'https://infomentor.se/Swedish/Production/mentor/Oryggi/PinLogin/En
   -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36' \
   -H 'cache-control: no-cache' \
   -d '__EVENTTARGET=aDontActivatePin&__EVENTARGUMENT=&__VIEWSTATE=%2FwEPDwULLTExNjgzNDAwMjdkZEPHrLmSUp3IKh%2FYk4WyEHsBQdMx&__VIEWSTATEGENERATOR=7189AD5F&__EVENTVALIDATION=%2FwEdAANT4hIcRyCqQMJVzIysT0grY9gRTC512bYsbnJ8gQeUrlnllTXttyQbAlgyFMdw9va%2BKdVQbZxLkS3XlIJc4f5qeOcV0g%3D%3D' \
-  -b cookiefile -c cookiefile -o output.txt
+  -b cookiefile -c cookiefile -o output4.txt
 
 ## login
 curl -X GET 'https://hub.infomentor.se/authentication/authentication/login?apitype=im1&forceOAuth=true' \
@@ -133,7 +133,7 @@ curl -X GET 'https://hub.infomentor.se/authentication/authentication/login?apity
   -H 'Upgrade-Insecure-Requests: 1' \
   -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36' \
   -H 'cache-control: no-cache' \
-  -b cookiefile -c cookiefile -i -o output.txt
+  -b cookiefile -c cookiefile -i -o output5.txt
 
 ## mentor - redirecting to login page so auth was unsuccessful previously
 curl -X POST 'https://infomentor.se/swedish/production/mentor/' \
@@ -154,6 +154,9 @@ curl -X POST 'https://infomentor.se/swedish/production/mentor/' \
   -H 'cache-control: no-cache' \
   -d oauth_token=$oauth_token \
   -b cookiefile -c cookiefile -s -i \
+  > output6.txt
+
+echo $(cat output6.txt) \
   | grep -oP "(?<=(Location: )).*" \
   > location2
 
@@ -183,7 +186,7 @@ curl -X GET $location2 \
   -H 'Upgrade-Insecure-Requests: 1' \
   -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36' \
   -H 'cache-control: no-cache' \
-  -b cookiefile -c cookiefile -o output.txt
+  -b cookiefile -c cookiefile -o output7.txt
 
 ## get pupil links so we can extract pupil id's
 curl -X GET \

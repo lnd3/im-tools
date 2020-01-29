@@ -60,9 +60,6 @@ removeFileIfExist tmp
 removeFileIfExist newsdiff
 removeFileIfExist timelinediff
 
-exit
-
-
 
 if [ -s update-${timestring}.txt ] && [ -s emails ]
 then
