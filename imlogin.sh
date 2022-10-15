@@ -25,15 +25,16 @@ then
 fi
 
 ## Fetch initial redirect first
-curl -X GET 'https://hub.infomentor.se' -b cookiefile -c cookiefile -i | grep -oP "(?<=(Location: )).*" \
-  > location
+curl -X GET 'https://hub.infomentor.se' -b cookiefile -c cookiefile -i > output0.txt
+cat output0.txt | dos2unix | grep 'Location:'| cut -d' ' -f2 > location
+
 location="https://hub.infomentor.se"$(cat location)
 echo "********************************************"
 echo " > Extracted location: "$location
 echo "********************************************"
 
 ## Follow initial redirect
-curl -X GET $location -b cookiefile -c cookiefile -i \
+curl -X GET $location -b cookiefile -c cookiefile -i\
   | grep -oP "(?<=(oauth_token\" value=\"))[\w+=/]+" > oauth_token
 
 oauth_token=$(cat oauth_token)
@@ -154,11 +155,9 @@ curl -X POST 'https://infomentor.se/swedish/production/mentor/' \
   -H 'cache-control: no-cache' \
   -d oauth_token=$oauth_token \
   -b cookiefile -c cookiefile -s -i \
-  > output6.txt
+  -o output6.txt
 
-echo $(cat output6.txt) \
-  | grep -oP "(?<=(Location: )).*" \
-  > location2
+cat output6.txt | dos2unix | grep 'Location:'| cut -d' ' -f2 > location2
 
 location2=$(cat location2)
 echo "********************************************"
@@ -172,7 +171,7 @@ then
 fi
 
 ## login callback - using the 'location' in the previous response
-curl -X GET $location2 \
+curl -X GET $(cat location2) \
   -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3' \
   -H 'Accept-Encoding: deflate, br' \
   -H 'Accept-Language: sv-SE,sv;q=0.9,en-US;q=0.8,en;q=0.7' \
@@ -190,7 +189,7 @@ curl -X GET $location2 \
 
 ## get pupil links so we can extract pupil id's
 curl -X GET \
-  https://hub.infomentor.se/ \
+  "https://hub.infomentor.se/#/" \
   -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3' \
   -H 'Accept-Encoding: gzip, deflate, br' \
   -H 'Accept-Language: sv-SE,sv;q=0.9,en-US;q=0.8,en;q=0.7' \
